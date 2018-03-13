@@ -88,7 +88,7 @@ define(["coreJS/adapt"], function(Adapt) {
                                 body :  inActivityWarning.feedback
                         };
                         Adapt.trigger('notify:popup', popupObject);
-                        $('.notify-popup-body').addClass('Inactive');
+                        $('.notify-popup-body').addClass('Inactive').css('text-align','center');
                         $(".notify-popup-done").addClass("display-none");
                    }
                    self.bindMouseEvents();
