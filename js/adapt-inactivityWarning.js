@@ -9,7 +9,6 @@ define(["coreJS/adapt"], function(Adapt) {
               this.bindKeyboardEvents();
         },
 
-
         bindMouseEvents: function() {
            var self = this;
           if(Adapt.device.touch) {
@@ -62,10 +61,7 @@ define(["coreJS/adapt"], function(Adapt) {
 
         hidePopup: function() {
             if($('.notify-popup-body').hasClass('Inactive')) {
-                  $('.notify-popup').remove();
-                  $('.notify-shadow').css('display','none');
-                  $('body').scrollEnable();
-                  $('html').removeClass('notify');
+                  this.resetPopup();
             }
             this.remove();
         },
