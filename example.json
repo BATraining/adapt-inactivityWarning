@@ -1,0 +1,9 @@
+//to go in course.json
+
+"_inactivityWarning": {
+     "_isEnabled": true,
+     "sessionTime": 5,
+     "feedback": "You have been inactive for 5 minutes..<br>The lesson will be automatically closed in <span class='second'>60</span> seconds<br><br><button id='close' class='popup-button'>Ok</button>"
+    //Note : please add sessionTime in minutues only example 1,2,3,4,5 min
+}
+
