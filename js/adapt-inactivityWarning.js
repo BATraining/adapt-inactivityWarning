@@ -107,7 +107,7 @@ define(["coreJS/adapt"], function(Adapt) {
                                   self.hidePopup();
                                   self.closeCourse();
                             }
-                                this.$('.notify-popup-title').html('InactivityWarning')
+                                this.$('.notify-popup-title').html('INACTIVITY WARNING');
                                 this.$('.second').html(sec);
                     }
         },
