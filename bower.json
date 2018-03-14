@@ -1,0 +1,17 @@
+{
+  "name": "adapt-inactivityWarning",
+  "version": "2.1.2",
+  "framework": "2.0.1",
+  "author": "sarveshwar.gavhane@newgen-ent.com",
+  "issues": "",
+  "displayName" : "InActivityWarning",
+  "extension" : "inactivityWarning",
+  "description": "An extension which provides an Inactivity Warning feedback after 5 minutes of inactivity",
+  "main": "/js/adapt-inactivityWarning.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-extension"
+  ],
+  "license": "GPLv3",
+  "targetAttribute": "_tutor"
+}
