@@ -60,7 +60,7 @@ define(["coreJS/adapt"], function(Adapt) {
         },
 
         bindKeyboardEvents: function() {
-            $(document).keypress(function(event) {
+            $(document).keydown(function(event) {
                 this.resetTimers();
             }.bind(this));
         },
@@ -88,7 +88,6 @@ define(["coreJS/adapt"], function(Adapt) {
             function Timer() {
                 if (convertedInSec <= 0) return;
                 convertedInSec = convertedInSec - 1;
-                console.log("convertedInSec", convertedInSec);
                 if (convertedInSec === 0) {
                     clearInterval(time)
                     if ($('.notify-popup-body').length) {
@@ -100,7 +99,7 @@ define(["coreJS/adapt"], function(Adapt) {
                         body: inActivityWarning.feedback
                     };
                     Adapt.trigger('notify:popup', popupObject);
-                    $('.notify-popup-body').addClass('Inactive').css('text-align', 'center');
+                    $('.notify-popup-body').addClass('Inactive');
                     $(".notify-popup-done").addClass("display-none");
                 }
                 this.bindMouseEvents();
@@ -119,8 +118,7 @@ define(["coreJS/adapt"], function(Adapt) {
                     this.hidePopup();
                     this.closeCourse();
                 }
-                this.$('.notify-popup-title').html('INACTIVITY WARNING')
-                this.$('.second').html(sec);
+                $('.second').html(sec);
             }
         },
 
