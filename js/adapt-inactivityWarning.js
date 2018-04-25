@@ -46,9 +46,14 @@ define(["coreJS/adapt"], function(Adapt) {
                 clearInterval(time);
                 this.validateInActiveTime();
             }.bind(this));
+
+            $('#wrapper, .notify').on('mousemove',function(event) {
+                    this.resetTimers();
+            }.bind(this));
         },
 
         resetTimers: function() {
+
             clearInterval(time);
             time = undefined;
             if (countDown) {
@@ -70,6 +75,7 @@ define(["coreJS/adapt"], function(Adapt) {
             $('#wrapper').off('touchstart');
             $('iframe').contents().find("body").off('click')
             $(document).off('keypress');
+            $('#wrapper, .notify').off('mousemove')
         },
 
         hidePopup: function() {
@@ -88,6 +94,7 @@ define(["coreJS/adapt"], function(Adapt) {
             function Timer() {
                 if (convertedInSec <= 0) return;
                 convertedInSec = convertedInSec - 1;
+                console.log("convertedInSec",convertedInSec);
                 if (convertedInSec === 0) {
                     clearInterval(time)
                     if ($('.notify-popup-body').length) {
