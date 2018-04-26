@@ -42,13 +42,18 @@ define(["coreJS/adapt"], function(Adapt) {
 
             }.bind(this));
 
-            $('iframe').contents().find("body").on('click', function(event) {
+            $('iframe').contents().find("body").on('click mousemove', function(event) {
                 clearInterval(time);
                 this.validateInActiveTime();
+            }.bind(this));
+
+            $('#wrapper, .notify').on('mousemove',function(event) {
+                    this.resetTimers();
             }.bind(this));
         },
 
         resetTimers: function() {
+
             clearInterval(time);
             time = undefined;
             if (countDown) {
@@ -68,8 +73,9 @@ define(["coreJS/adapt"], function(Adapt) {
         remove: function() {
             $(document).off('click');
             $('#wrapper').off('touchstart');
-            $('iframe').contents().find("body").off('click')
+            $('iframe').contents().find("body").off('click mousemove');
             $(document).off('keypress');
+            $('#wrapper, .notify').off('mousemove')
         },
 
         hidePopup: function() {
@@ -88,6 +94,7 @@ define(["coreJS/adapt"], function(Adapt) {
             function Timer() {
                 if (convertedInSec <= 0) return;
                 convertedInSec = convertedInSec - 1;
+                console.log("convertedInSec",convertedInSec);
                 if (convertedInSec === 0) {
                     clearInterval(time)
                     if ($('.notify-popup-body').length) {
