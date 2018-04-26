@@ -7,6 +7,7 @@ define(["coreJS/adapt"], function(Adapt) {
             countDown = undefined;
             this.bindMouseEvents();
             this.bindKeyboardEvents();
+            this.listenTo(Adapt, 'pageView:ready', this.setupIframeEvent, this);
         },
 
         bindMouseEvents: function() {
@@ -16,7 +17,7 @@ define(["coreJS/adapt"], function(Adapt) {
                 }.bind(this));
             }
 
-            $(document).on('click', function(event) {
+            $(document).on('click scroll', function(event) {
                 if (!checkClass(event.target.className))
                     this.resetTimers()
 
@@ -42,10 +43,20 @@ define(["coreJS/adapt"], function(Adapt) {
 
             }.bind(this));
 
-            $('iframe').contents().find("body").on('click', function(event) {
-                clearInterval(time);
-                this.validateInActiveTime();
-            }.bind(this));
+        },
+
+        setupIframeEvent: function () {
+            var iframes = $('iframe');
+            for (var i = 0; i < iframes.length; i++) {
+                try {
+                    $(iframes[i]).contents().find("body").on('click', function (event) {
+                        clearInterval(time);
+                        this.validateInActiveTime();
+                    }.bind(this));
+                } catch (err) {
+
+                }
+            }
         },
 
         resetTimers: function() {
@@ -65,18 +76,10 @@ define(["coreJS/adapt"], function(Adapt) {
             }.bind(this));
         },
 
-        remove: function() {
-            $(document).off('click');
-            $('#wrapper').off('touchstart');
-            $('iframe').contents().find("body").off('click')
-            $(document).off('keypress');
-        },
-
         hidePopup: function() {
             if ($('.notify-popup-body').hasClass('Inactive')) {
                 this.resetPopup();
             }
-            this.remove();
         },
 
         validateInActiveTime: function() {
