@@ -42,7 +42,7 @@ define(["coreJS/adapt"], function(Adapt) {
 
             }.bind(this));
 
-            $('iframe').contents().find("body").on('click', function(event) {
+            $('iframe').contents().find("body").on('click mousemove', function(event) {
                 clearInterval(time);
                 this.validateInActiveTime();
             }.bind(this));
@@ -73,7 +73,7 @@ define(["coreJS/adapt"], function(Adapt) {
         remove: function() {
             $(document).off('click');
             $('#wrapper').off('touchstart');
-            $('iframe').contents().find("body").off('click')
+            $('iframe').contents().find("body").off('click mousemove');
             $(document).off('keypress');
             $('#wrapper, .notify').off('mousemove')
         },
